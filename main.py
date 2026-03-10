@@ -13,37 +13,36 @@ class Prompt_Template_Groq:
 
     def main(self):
 
-        print(os.getenv("GROQ_API_KEY"))
-        information="""
-        load_dotenv is a function from the python-dotenv package that reads key-value pairs from a .env file and adds them to the environment variables (os.environ). It is used to securely manage configuration settings like API keys or database credentials outside of the codebase, enabling easy switching between environments. 
-    Key Details for Usage:
-    Installation: Install via pip using pip install python-dotenv.
-    Implementation: Call load_dotenv() early in your code (usually main.py or settings.py) to load variables before they are needed.
-    File Location: By default, it looks for a .env file in the current directory.
-    Usage Example:
-    python
-    import os
-    from dotenv import load_dotenv
+        print("API KEY:", os.getenv("GROQ_API_KEY"))
 
-    load_dotenv()  # Loads variables from .env
-    api_key = os.getenv('API_KEY')
-        """ 
+        information = """
+        load_dotenv is a function from the python-dotenv package that reads key-value pairs from a .env file 
+        and adds them to the environment variables (os.environ). It is used to securely manage configuration 
+        settings like API keys or database credentials outside of the codebase.
+        """
 
-        summary_template="""
-        Given the information {information} and I want to create:
+        summary_template = """
+        Given the following information:
+
+        {information}
+
+        Perform the following tasks:
         1. Summarize this content.
-        2. convert it into hindi language.
-        """   
+        2. Convert the summary into Hindi language.
+        """
 
-        summary_template=PromptTemplate(
-            input_variable=["information"],template=summary_template
+        prompt_template = PromptTemplate(
+            input_variables=["information"],
+            template=summary_template
         )
-         
-        llm=summary_template | self.llm 
-        output=llm.invoke(input={"information":information})
+
+        prompt = prompt_template.format(information=information)
+
+        output = self.llm.invoke(prompt)
+
+        print("\nResponse:\n")
         print(output.content)
 
 
-
-obj=Prompt_Template_Groq()
+obj = Prompt_Template_Groq()
 obj.main()

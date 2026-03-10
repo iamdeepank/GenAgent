@@ -1,5 +1,9 @@
 # Releases
 
+## 0.1.2
+### Fix
+- Quick template fix
+
 ## 0.1.1
 ### Added
 - Integrated **LangSmith** for tracing and observability.

@@ -45,5 +45,5 @@ class Prompt_Template_Groq:
 
 
 
-obj=Groq_summarization()
+obj=Prompt_Template_Groq()
 obj.main()

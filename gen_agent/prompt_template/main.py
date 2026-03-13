@@ -1,7 +1,9 @@
 import os
+
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain_groq  import ChatGroq
+from langchain_groq import ChatGroq
+
 load_dotenv()
 
 class Prompt_Template_Groq:
@@ -16,8 +18,8 @@ class Prompt_Template_Groq:
         print("API KEY:", os.getenv("GROQ_API_KEY"))
 
         information = """
-        load_dotenv is a function from the python-dotenv package that reads key-value pairs from a .env file 
-        and adds them to the environment variables (os.environ). It is used to securely manage configuration 
+        load_dotenv is a function from the python-dotenv package that reads key-value pairs from a .env file
+        and adds them to the environment variables (os.environ). It is used to securely manage configuration
         settings like API keys or database credentials outside of the codebase.
         """
 

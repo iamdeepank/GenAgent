@@ -1,5 +1,9 @@
 # Releases
 
+## 0.1.3
+### Feature
+- Added new Agent with custom tool, using tavily
+
 ## 0.1.2
 ### Fix
 - Quick template fix

@@ -8,7 +8,7 @@ class Prompt_Template_Groq:
 
     def __init__(self):
         self.llm=ChatGroq(
-            model_name="llama-3.1-8b-instant", temperature=0.7
+            model_name="llama-3.1-8b-instant", temperature=0.0
         )
 
     def main(self):

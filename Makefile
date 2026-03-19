@@ -1,28 +1,28 @@
-# Python executable
-PYTHON := .venv/bin/python
-PIP := .venv/bin/pip
+# Variables
+VENV := .venv
+PYTHON := $(VENV)/bin/python
 
-# Default target
-DEFAULT_GOAL := help
+.PHONY: setup ensure-uv sync run-agent lint format fix test clean
 
-help:
-	@echo "Available commands:"
-	@echo "  make install      Install dependencies"
-	@echo "  make run-agent    Run the Tavily tool agent"
-	@echo "  make lint         Run flake8 linter"
-	@echo "  make format       Format code with black"
-	@echo "  make test         Run tests"
-	@echo "  make clean        Remove cache files"
+# ---- Setup ----
+setup: ensure-uv sync
 
-install:
-	$(PIP) install .
-	
+# Ensure uv is installed
+ensure-uv:
+	@if ! command -v uv >/dev/null 2>&1; then \
+		echo "Installing uv..."; \
+		curl -Ls https://astral.sh/uv/install.sh | sh; \
+	fi
+
+# Install dependencies (creates venv automatically)
 sync:
 	uv sync
 
+# ---- Run ----
 run-agent:
 	uv run python -m gen_agent.agents.tavily_search_in_tool_agent
 
+# ---- Code Quality ----
 lint:
 	uv run ruff check .
 
@@ -32,10 +32,13 @@ format:
 fix:
 	uv run ruff check --fix .
 
-
+# ---- Testing ----
 test:
 	uv run pytest
 
+# ---- Cleanup ----
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete	
+	find . -type f -name "*.pyc" -delete
+	rm -rf $(VENV)
+	

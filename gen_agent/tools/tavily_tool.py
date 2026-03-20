@@ -6,7 +6,6 @@ load_dotenv()
 tavily=TavilyClient()
 
 @tool
-def tavily_search(query:str):
+def brave_search(query:str):
     """tavily tool for search."""
-    print("user_query", query)
     return tavily.search(query=query)

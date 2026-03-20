@@ -1,5 +1,5 @@
-from .tavily_tool import tavily_search
+from .tavily_tool import brave_search
 
 __all__=[
-    "tavily_search"
+    "brave_search"
 ]

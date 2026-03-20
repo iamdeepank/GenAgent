@@ -1,13 +1,14 @@
 from dotenv import load_dotenv
 from langchain.agents import create_agent
-from gen_agent.tools import tavily_search
+from gen_agent.tools import brave_search
 from gen_agent.config import llm
 from langchain.messages import HumanMessage
+from gen_agent.settings import AgentResponse
 load_dotenv()
 
-tools=[tavily_search]
+tools=[brave_search]
 
-agent=create_agent(model=llm,tools=tools)
+agent=create_agent(model=llm,tools=tools,response_format=AgentResponse)
 
 content=agent.invoke(
      {

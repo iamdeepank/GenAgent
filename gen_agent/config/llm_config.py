@@ -1,9 +1,9 @@
-from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-
-load_dotenv()
+from gen_agent.settings import llm_settings  
 
 def get_llm():
-    return ChatGroq(model="llama-3.1-8b-instant",
-temperature=0.1
+    return ChatGroq(
+        api_key=llm_settings.GROQ_API_KEY,
+        model=llm_settings.MODEL,
+temperature=llm_settings.TEMPERATURE
 )

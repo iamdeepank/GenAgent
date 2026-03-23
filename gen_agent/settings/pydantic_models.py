@@ -1,13 +1,12 @@
 from pydantic import BaseModel,Field
-from typing import List
-
-
-class TavilySetting(BaseModel):
-    model:str = Field(description="llm model name")
-    temperature:float = Field(description="temprature value of model.")
+from typing import List,Optional
 
 class Source(BaseModel):
     url:str = Field(description="url source.")
+    title: Optional[str] = Field(default=None, description="Page title")
+    content_snippet: Optional[str] = Field(default=None, description="Extracted snippet")
+    score: Optional[float] = Field(default=None, description="Relevance score")
+    source_type: Optional[str] = Field(default="web", description="Type of source")
 
 class AgentResponse(BaseModel):
     """Schema of Agent Response Answer and source."""

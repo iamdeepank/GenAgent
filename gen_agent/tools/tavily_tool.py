@@ -1,9 +1,9 @@
 from langchain.tools import tool
 from dotenv import load_dotenv
 from tavily import TavilyClient
-load_dotenv()
+from gen_agent.settings import tavily_settings  
 
-tavily=TavilyClient()
+tavily=TavilyClient(api_key=tavily_settings.API_KEY)
 
 @tool
 def brave_search(query:str):

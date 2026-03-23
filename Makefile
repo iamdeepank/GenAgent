@@ -20,7 +20,15 @@ sync:
 
 # ---- Run ----
 run-agent:
-	uv run python -m gen_agent.agents.tavily_search_in_tool_agent
+	LLM_GROQ_API_KEY= \
+	LLM_MODEL=llama-3.1-8b-instant \
+	LLM_TEMPERATURE=0.1 \
+	TAVILY_API_KEY= \
+	LANGSMITH_TRACING=true \
+	LANGSMITH_ENDPOINT=https://api.smith.langchain.com \
+	LANGSMITH_API_KEY= \
+	LANGSMITH_PROJECT="langchain_trace" \
+	uv run python -m gen_agent.main
 
 # ---- Code Quality ----
 lint:

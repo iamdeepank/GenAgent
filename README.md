@@ -17,4 +17,6 @@ LANGSMITH_TRACING=true
 LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 LANGSMITH_API_KEY=
 LANGSMITH_PROJECT=langchain_trace
+TAVILY_API_KEY=
+
 ```

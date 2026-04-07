@@ -1,4 +1,7 @@
 # Releases
+## 0.1.5
+- Setup React prompt
+
 ## 0.1.4
 - Introducing ecommerce Application.
 
